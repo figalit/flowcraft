@@ -10,6 +10,7 @@ resolution
 ### New components
 
 - Added component `abyss`.
+- Added component `unicycler`.
 
 ### Minor/Other changes
 

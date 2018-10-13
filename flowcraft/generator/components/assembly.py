@@ -216,3 +216,48 @@ class Abyss(Process):
             "version": "2.1.1",
             "scratch": "true"
         }}
+
+
+class Unicycler(Process):
+    """Unicycler process template interface
+
+    This process is set with:
+
+        - ``input_type``: fastq
+        - ``output_type``: assembly
+        - ``ptype``: assembly
+
+    """
+
+    def __init__(self, **kwargs):
+
+        super().__init__(**kwargs)
+
+        self.input_type = "fastq"
+        self.output_type = "fasta"
+
+        self.params = {
+            "short1": {
+                "default": "short_reads_1.fastq",
+                "description":
+                    "short1."
+            }
+            "short2": {
+                "default": "short_reads_2.fastq",
+                "description":
+                    "short2."
+            }
+            "out": {
+                "default": "out",
+                "description":
+                    "output dir."
+            }
+        }
+
+        self.directives = {"unicycler": {
+            "cpus": 4,
+            "memory": "{ 5.GB * task.attempt }",
+            "container": "flowcraft/unicycler",
+            "version": "0.4.7",
+            "scratch": "true"
+        }}
